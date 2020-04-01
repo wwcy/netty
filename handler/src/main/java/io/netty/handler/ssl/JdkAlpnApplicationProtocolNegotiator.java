@@ -141,7 +141,9 @@ public final class JdkAlpnApplicationProtocolNegotiator extends JdkBaseApplicati
                 return isServer ? JettyAlpnSslEngine.newServerEngine(engine, applicationNegotiator)
                         : JettyAlpnSslEngine.newClientEngine(engine, applicationNegotiator);
             }
-            throw new RuntimeException("Unable to wrap SSLEngine of type " + engine.getClass().getName());
+            throw new UnsupportedOperationException("ALPN not supported (used java version: "
+                    + PlatformDependent.javaVersion() + ", min java version: 9). Unable to wrap SSLEngine of type '"
+                    + engine.getClass().getName() + "')");
         }
     }
 
